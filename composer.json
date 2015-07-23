@@ -45,7 +45,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
-    "preferred-install": "dist",
     "config": {
         "bin-dir": "bin"
     },

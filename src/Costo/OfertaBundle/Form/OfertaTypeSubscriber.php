@@ -89,14 +89,14 @@ class OfertaTypeSubscriber implements EventSubscriberInterface {
                     'by_reference' => FALSE
                 ));
                 break;
-            case 6:
+            /*case 6:
                 $form->add('oferta_material', 'collection', array(
                     'type' => new OfertaMaterialType(),
                     'allow_add' => TRUE,
                     'allow_delete' => TRUE,
                     'by_reference' => FALSE
                 ));
-                break;
+                break;*/
         }
     }
 

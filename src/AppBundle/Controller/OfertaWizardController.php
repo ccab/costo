@@ -253,9 +253,10 @@ class OfertaWizardController extends Controller {
         ));
     }
 
-    /**
+   /**
      * @Route("/materiales2/{id}", name="oferta_materiales2", defaults = {"id" = 0})
      */
+    /*
     public function materiales2Action(Request $request, Oferta $entity) {
         $form = $this->createForm('oferta_form', $entity, array('step' => 6));
         $form->handleRequest($request);
@@ -282,7 +283,7 @@ class OfertaWizardController extends Controller {
                     'entity' => $entity,
                     'form' => $form->createView())
         );
-    }
+    }*/
 
     /**
      * @Route("/servicios/{id}", name="oferta_servicios", defaults = {"id" = 0})
