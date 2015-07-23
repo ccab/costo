@@ -1,0 +1,30 @@
+ficha:
+    pattern:  /
+    defaults: { _controller: "ClienteBundle:Ficha:index" }
+
+ficha_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClienteBundle:Ficha:show" }
+
+ficha_new:
+    pattern:  /new
+    defaults: { _controller: "ClienteBundle:Ficha:new" }
+
+ficha_create:
+    pattern:  /create
+    defaults: { _controller: "ClienteBundle:Ficha:create" }
+    requirements: { _method: post }
+
+ficha_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClienteBundle:Ficha:edit" }
+
+ficha_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClienteBundle:Ficha:update" }
+    requirements: { _method: post|put }
+
+ficha_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClienteBundle:Ficha:delete" }
+    requirements: { _method: post|delete }

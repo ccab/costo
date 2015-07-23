@@ -1,0 +1,7 @@
+parameters:
+#    materiales.example.class: Costo\MaterialesBundle\Example
+
+services:
+#    materiales.example:
+#        class: %materiales.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

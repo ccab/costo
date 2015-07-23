@@ -1,0 +1,343 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Solicitar Dieta contra anticipo{% endblock %}
+
+{% block page_title %}Solicitar Dieta contra anticipo{% endblock %}
+
+{% block stylesheets_page %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/bootstrap-datetimepicker/css/datetimepicker.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/typeahead/typeahead.css')}}">
+{% endblock %}
+
+{% block body -%}
+    {{ form_errors(form) }}
+
+    <div class="portlet box green ">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-reorder"></i> Solicitar Dieta
+            </div>
+        </div>
+        <div class="portlet-body form">
+            {{ form_start(form) }}
+
+            <div class="form-body">
+
+                <h4 class="form-section">Concepto dieta y hospedaje</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        {{ form_row(form.nombreBeneficiario, {'attr':{'class':'input-medium typeahead'}, 'label':'Nombre'}) }}
+                        {{ form_row(form.areaBeneficiario, {'label':'Area'}) }}
+                        {{ form_row(form.concepto) }}
+                        {{ form_row(form.laborRealizar, {'label':'Labor a realizar'}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.contratoDietas) }}
+                    </div>
+                    <div class="col-md-3">
+                        {#{{ form_row(form.provincia) }}#}
+                        {{ form_row(form.fechaSalidaEstimada,  {'attr':{'class':'input-normal date form_datetime'}, 'label':'Salida Estimada'}) }}
+                        {{ form_row(form.fechaRegresoEstimada, {'attr':{'class':'input-normal date form_datetime'}, 'label':'Regreso Estimada'}) }}
+                    </div>
+                </div>
+                    
+                <h4 class="form-section">Contrato y forma de Pago</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="table-scrollable">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Dieta</th>
+                                        <th>Hospedaje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CUP</td>
+                                        <td>{{ form_widget(form.formaPagoDietaCUP) }}</td>
+                                        <td>{{ form_widget(form.formaPagoHospedajeCUP) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CUC</td>
+                                        <td>{{ form_widget(form.formaPagoDietaCUC) }}</td>
+                                        <td>{{ form_widget(form.formaPagoHospedajeCUC) }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="table-scrollable">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Concepto</th>
+                                        <th>Desayuno</th>
+                                        <th>Almuerzo</th>
+                                        <th>Comida</th>
+                                        <th>Hospedaje</th>
+                                        <th>Otros</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CUP</td>
+                                        <td>Entregado</td>
+                                        <td>{{ form_widget(form.importeEntregadoDesayunoCUP) }}</td>
+                                        <td>{{ form_widget(form.importeEntregadoAlmuerzoCUP) }}</td>
+                                        <td>{{ form_widget(form.importeEntregadoComidaCUP) }}</td>
+                                        <td>{{ form_widget(form.importeEntregadoHospedajeCUP) }}</td>
+                                        <td>{{ form_widget(form.importeEntregadoOtrosCUP) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CUC</td>
+                                        <td>Entregado</td>
+                                        <td>{{ form_widget(form.importeEntregadoDesayunoCUC) }}</td>
+                                        <td>{{ form_widget(form.importeEntregadoAlmuerzoCUC) }}</td>
+                                        <td>{{ form_widget(form.importeEntregadoComidaCUC) }}</td>
+                                        <td>{{ form_widget(form.importeEntregadoHospedajeCUC) }}</td>
+                                        <td>{{ form_widget(form.importeEntregadoOtrosCUC) }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ form_row(form.contratoPago) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.numeroTarjeta, {'label':'Num. Tarj.'}) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.numeroSolicitud, {'label':'Num. Sol.'}) }}
+                    </div>
+                </div>
+
+                <div class="form-actions fluid">
+                    <div class="pull-right">
+                        <button type="submit" class="btn green">
+                            <i class="fa fa-check"></i> Aceptar
+                        </button>
+                        <a href="{{ path('dieta') }}" class="btn btn-danger" role="button">
+                            <i class="fa fa-list"></i> Cancelar
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        var $collectionHolder;
+        // setup an "add" link
+        var $addLink = $('<a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus-sign"></span> Agregar Contrato</a>');
+        var $addLinkDiv = $('<div class="add-link"></div>').append($addLink);
+
+        jQuery(document).ready(function() {
+            // Get the div that holds the collection of cuentas
+            $collectionHolder = $('div#appbundle_dieta_contratoDietas');
+
+            // add the "add" div
+            $collectionHolder.append($addLinkDiv);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+                // add a new form (see next code block)
+                addForm($collectionHolder, $addLinkDiv);
+            });
+
+            function addForm($collectionHolder, $addLinkDiv) {
+                // Get the data-prototype
+                var prototype = $collectionHolder.data('prototype');
+
+                // get the new index
+                var index = $collectionHolder.data('index');
+
+                // Get the child forms number 
+                $collectionHolder.data('num', $collectionHolder.find("div[id*='appbundle_dieta_contratoDietas_']").length);
+                var num = $collectionHolder.data('num') + 1;
+
+                // Set a proper label
+                var newForm = prototype.replace(/__name__label__/g, "# " + num);
+
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm2 = newForm.replace(/__name__/g, index);
+
+                // increase the index with one for the next item
+                $collectionHolder.data('index', index + 1);
+
+                // Display the form, before the "Add" link div
+                var $newFormDiv = $('<div class="new-form"></div>').append(newForm2);
+                $addLinkDiv.before($newFormDiv);
+
+                // add a delete link to the new form
+                addFormDeleteLink($newFormDiv);
+            }
+
+            // add a delete link to all of the existing forms
+            $collectionHolder.find("div.form-group").each(function() {
+                addFormDeleteLink($(this));
+            });
+
+            function addFormDeleteLink($FormDiv) {
+                var $removeLink = $('<a href="#" class="btn btn-danger pull-right" role="button"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>');
+                $FormDiv.find("div[id*='appbundle_dieta_contratoDietas_']").append($removeLink);
+
+                $removeLink.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+                    // remove the li for the tag form
+                    $FormDiv.remove();
+                });
+            }
+
+        });
+
+    </script>
+
+
+{% endblock %}
+
+{% block javascripts_page_plugins %}
+    <script src="{{ asset('assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.es.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/typeahead/handlebars.min.js') }}" type="text/javascript"></script>    
+    <script src="{{ asset('assets/plugins/typeahead/typeahead.min.js') }}" type="text/javascript"></script>    
+
+{% endblock %}
+
+
+
+{% block javascripts_custom_scripts %}
+    <script type="text/javascript">
+        $(".form_datetime").datetimepicker({
+            autoclose: true,
+            format: "dd/mm/yyyy - hh:ii",
+            language: 'es',
+            startDate: '{{ date()|date('d/m/Y - h:i') }}'
+        });
+
+        $(document).ready(function() {
+            // CUANDO CARGA EL SELECT
+            function setImporte() {
+                $.ajax({
+                    url: Routing.generate('contratopago_show', {id: $('#appbundle_dieta_contratoPago').val()}),
+                    success: function(html) {
+                        $('#appbundle_dieta_importeEntregadoDesayunoCUP').val($.trim($(html).find('#contrato-pago-imp-ent-des-cup').text()));
+                        $('#appbundle_dieta_importeEntregadoDesayunoCUC').val($.trim($(html).find('#contrato-pago-imp-ent-des-cuc').text()));
+                        $('#appbundle_dieta_importeEntregadoAlmuerzoCUP').val($.trim($(html).find('#contrato-pago-imp-ent-alm-cup').text()));
+                        $('#appbundle_dieta_importeEntregadoAlmuerzoCUC').val($.trim($(html).find('#contrato-pago-imp-ent-alm-cuc').text()));
+                        $('#appbundle_dieta_importeEntregadoComidaCUP').val($.trim($(html).find('#contrato-pago-imp-ent-com-cup').text()));
+                        $('#appbundle_dieta_importeEntregadoComidaCUC').val($.trim($(html).find('#contrato-pago-imp-ent-com-cuc').text()));
+                        $('#appbundle_dieta_importeEntregadoHospedaje').val(0);
+                        $('#appbundle_dieta_importeEntregadoOtros').val(0);
+
+                        if ($('#appbundle_dieta_contratoPago option:selected').text() === "PERSONALIZADO") {
+                            $('#appbundle_dieta_importeEntregadoDesayunoCUP').prop("readonly", false);
+                            $('#appbundle_dieta_importeEntregadoDesayunoCUC').prop("readonly", false);
+                            $('#appbundle_dieta_importeEntregadoAlmuerzoCUP').prop("readonly", false);
+                            $('#appbundle_dieta_importeEntregadoAlmuerzoCUC').prop("readonly", false);
+                            $('#appbundle_dieta_importeEntregadoComidaCUP').prop("readonly", false);
+                            $('#appbundle_dieta_importeEntregadoComidaCUC').prop("readonly", false);
+                        }
+                        else {
+                            $('#appbundle_dieta_importeEntregadoDesayunoCUP').prop("readonly", true);
+                            $('#appbundle_dieta_importeEntregadoDesayunoCUC').prop("readonly", true);
+                            $('#appbundle_dieta_importeEntregadoAlmuerzoCUP').prop("readonly", true);
+                            $('#appbundle_dieta_importeEntregadoAlmuerzoCUC').prop("readonly", true);
+                            $('#appbundle_dieta_importeEntregadoComidaCUP').prop("readonly", true);
+                            $('#appbundle_dieta_importeEntregadoComidaCUC').prop("readonly", true);
+                        }
+                    }
+                });
+
+            }
+
+            setImporte();
+
+            // TYPEAHEAD
+            $.getJSON("{{ path('all_users') }}", function(source) {
+                // instantiate the bloodhound suggestion engine
+                var users = new Bloodhound({
+                    datumTokenizer: function(d) {
+                        return Bloodhound.tokenizers.whitespace(d.name);
+                    },
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    local: source
+                });
+
+                // initialize the bloodhound suggestion engine
+                users.initialize();
+
+                // instantiate the typeahead UI
+                $('.typeahead').typeahead(
+                        {
+                            highlight: true,
+                        },
+                        {
+                            displayKey: 'name',
+                            source: users.ttAdapter()
+                        }
+                );
+            });
+        });
+
+        // CUANDO CAMBIA EL SELECT
+        $('#appbundle_dieta_contratoPago').change(function setImporte() {
+            $.ajax({
+                url: Routing.generate('contratopago_show', {id: $('#appbundle_dieta_contratoPago').val()}),
+                success: function(html) {
+                    $('#appbundle_dieta_importeEntregadoDesayunoCUP').val($.trim($(html).find('#contrato-pago-imp-ent-des-cup').text()));
+                    $('#appbundle_dieta_importeEntregadoDesayunoCUC').val($.trim($(html).find('#contrato-pago-imp-ent-des-cuc').text()));
+                    $('#appbundle_dieta_importeEntregadoAlmuerzoCUP').val($.trim($(html).find('#contrato-pago-imp-ent-alm-cup').text()));
+                    $('#appbundle_dieta_importeEntregadoAlmuerzoCUC').val($.trim($(html).find('#contrato-pago-imp-ent-alm-cuc').text()));
+                    $('#appbundle_dieta_importeEntregadoComidaCUP').val($.trim($(html).find('#contrato-pago-imp-ent-com-cup').text()));
+                    $('#appbundle_dieta_importeEntregadoComidaCUC').val($.trim($(html).find('#contrato-pago-imp-ent-com-cuc').text()));
+                    $('#appbundle_dieta_importeEntregadoHospedaje').val(0);
+                    $('#appbundle_dieta_importeEntregadoOtros').val(0);
+
+                    //$("#div1").html(html);
+                    if ($('#appbundle_dieta_contratoPago option:selected').text() === "PERSONALIZADO") {
+                        $('#appbundle_dieta_importeEntregadoDesayunoCUP').prop("readonly", false);
+                        $('#appbundle_dieta_importeEntregadoDesayunoCUC').prop("readonly", false);
+                        $('#appbundle_dieta_importeEntregadoAlmuerzoCUP').prop("readonly", false);
+                        $('#appbundle_dieta_importeEntregadoAlmuerzoCUC').prop("readonly", false);
+                        $('#appbundle_dieta_importeEntregadoComidaCUP').prop("readonly", false);
+                        $('#appbundle_dieta_importeEntregadoComidaCUC').prop("readonly", false);
+                    }
+                    else {
+                        $('#appbundle_dieta_importeEntregadoDesayunoCUP').prop("readonly", true);
+                        $('#appbundle_dieta_importeEntregadoDesayunoCUC').prop("readonly", true);
+                        $('#appbundle_dieta_importeEntregadoAlmuerzoCUP').prop("readonly", true);
+                        $('#appbundle_dieta_importeEntregadoAlmuerzoCUC').prop("readonly", true);
+                        $('#appbundle_dieta_importeEntregadoComidaCUP').prop("readonly", true);
+                        $('#appbundle_dieta_importeEntregadoComidaCUC').prop("readonly", true);
+                    }
+                }
+            });
+        });
+
+    </script>
+
+{% endblock %}

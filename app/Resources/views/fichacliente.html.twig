@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="" name="description"/>
+        <meta content="" name="author"/>
+
+
+        <title>{% block title %}Ficha Cliente{% endblock %}</title>
+
+        {% block stylesheets %}
+
+            <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>                            <!-- PARA TABS -->
+            <link href="{{ asset('assets/plugins/uniform/css/uniform.default.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/data-tables/jquery.dataTables.css')}}" rel="stylesheet" type="text/css"/>
+            <!-- END GLOBAL MANDATORY STYLES -->
+            <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+
+            <link href="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/fullcalendar/fullcalendar/fullcalendar.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/jqvmap/jqvmap/jqvmap.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css')}}" rel="stylesheet" type="text/css"/>
+            <!-- END PAGE LEVEL PLUGIN STYLES -->
+            <!-- BEGIN THEME STYLES -->
+            <link href="{{ asset('assets/css/style-metronic.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/style-responsive.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/plugins.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/pages/tasks.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/themes/default.css')}}" rel="stylesheet" type="text/css" id="style_color"/>
+            <link href="{{ asset('assets/css/print.css')}}" rel="stylesheet" type="text/css" media="print"/>
+            <link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css"/>
+
+            <link href="{{ asset('assets/plugins/bootstrap-datepicker/css/datepicker.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css')}}" rel="stylesheet" type="text/css"/>
+
+        {% endblock %}
+
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body class="page-header-fixed">
+        <!-- BEGIN HEADER -->
+        <div class="header navbar navbar-fixed-top">
+            <!-- BEGIN TOP NAVIGATION BAR -->
+            <div class="header-inner">
+                <!-- BEGIN LOGO -->
+                <a class="navbar-brand">
+                    <img src="{{ asset('favicon.ico') }}" alt="logo" class="img-responsive"/>
+                </a>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+                <!-- END RESPONSIVE MENU TOGGLER -->
+
+            </div>
+            <!-- END TOP NAVIGATION BAR -->
+        </div>
+        <!-- END HEADER -->
+
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- add "navbar-no-scroll" class to disable the scrolling of the sidebar menu -->
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="400">
+                        <li class="sidebar-toggler-wrapper">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler hidden-phone">
+                            </div>
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <li class="start active ">
+                            <a href="">
+                                <i class="fa fa-dashboard"></i>
+                                <span class="title">
+                                    Inicio
+                                </span>
+                                <span class="selected">
+                                </span>
+                            </a>
+                        </li>
+                        <!--SUBMENU FICHA-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-file"></i>
+                                <span class="title">
+                                    Ficha
+                                </span>
+                                <span class="arrow ">
+                                </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="{#{path('ficha')}#}"><i class="fa fa-list-ol"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{#{path('ficha_new')}#}"><i class="fa fa-plus-circle"></i>
+                                        Crear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--END SUBMENU FICHA-->
+                        <!--SUBMENU CUENTA-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-file"></i>
+                                <span class="title">
+                                    Cuenta
+                                </span>
+                                <span class="arrow ">
+                                </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="{#{path('cuenta')}#}"><i class="fa fa-list-ol"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{#{path('cuenta_new')}#}"><i class="fa fa-plus-circle"></i>
+                                        Crear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--END SUBMENU CUENTA-->
+                        <!--SUBMENU CONTACTO-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-file"></i>
+                                <span class="title">
+                                    Contacto
+                                </span>
+                                <span class="arrow ">
+                                </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="{#{path('contacto')}#}"><i class="fa fa-list-ol"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{#{path('contacto_new')}#}"><i class="fa fa-plus-circle"></i>
+                                        Crear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--END SUBMENU CONTACTO-->
+                        <!--SUBMENU AUTORIZADO A FIRMAR-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-file"></i>
+                                <span class="title">
+                                    Autorizado
+                                </span>
+                                <span class="arrow ">
+                                </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="{#{path('autorizado')}#}"><i class="fa fa-list-ol"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{#{path('autorizado_new')}#}"><i class="fa fa-plus-circle"></i>
+                                        Crear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--END SUBMENU AUTORIZADO A FIRMAR-->
+                        <!--SUBMENU DIRECTIVOS-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-file"></i>
+                                <span class="title">
+                                    Directivo
+                                </span>
+                                <span class="arrow ">
+                                </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="{#{path('directivo')}#}"><i class="fa fa-list-ol"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{#{path('directivo_new')}#}"><i class="fa fa-plus-circle"></i>
+                                        Crear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--END SUBMENU DIRECTIVOS-->
+                        <!--SUBMENU DOCUMENTOS-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-file"></i>
+                                <span class="title">
+                                    Documento
+                                </span>
+                                <span class="arrow ">
+                                </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="{#{path('documento')}#}"><i class="fa fa-list-ol"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{#{path('documento_new')}#}"><i class="fa fa-plus-circle"></i>
+                                        Crear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--END SUBMENU DOCUMENTO-->
+                        <!--SUBMENU MINISTERIO-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-file"></i>
+                                <span class="title">
+                                    Mnisterio
+                                </span>
+                                <span class="arrow ">
+                                </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="{#{path('ministerio')}#}"><i class="fa fa-list-ol"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{#{path('ministerio_new')}#}"><i class="fa fa-plus-circle"></i>
+                                        Crear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--END SUBMENU MINISTERIO-->
+                        <!--SUBMENU TTIPO EMPRESA-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-file"></i>
+                                <span class="title">
+                                    Tipo Empresa
+                                </span>
+                                <span class="arrow ">
+                                </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="{#{path('tipoempresa')}#}"><i class="fa fa-list-ol"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{#{path('tipoempresa_new')}#}"><i class="fa fa-plus-circle"></i>
+                                        Crear
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>  
+                        <!--END SUBMENU TTIPO EMPRESA-->
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+            {% block body %}{% endblock %}
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="footer-inner">
+            2014 &copy; Cubatel.SA Todos los Derechos reservados.
+        </div>
+        <div class="footer-tools">
+            <span class="go-top">
+                <i class="fa fa-angle-up"></i>
+            </span>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    {% block javascripts %}
+
+        <script src="{{ asset('assets/plugins/jquery-1.11.1.min.js') }}" type="text/javascript"></script>                                         <!-- PARA TABS -->
+        <script src="{{ asset('assets/plugins/jquery-migrate-1.2.1.min.js') }}" type="text/javascript"></script>
+        <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+        <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>                                   <!-- PARA TABS -->
+        <script src="{{ asset('assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jquery.cokie.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{{ asset('assets/plugins/jqvmap/jqvmap/jquery.vmap.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/flot/jquery.flot.resize.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/flot/jquery.flot.categories.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jquery.pulsate.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/bootstrap-daterangepicker/moment.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/bootbox/bootbox.min.js') }}" type="text/javascript"></script>                                 <!-- PARA TABS, MENSAGE DE ERROR -->
+        <script src="{{ asset('assets/plugins/gritter/js/jquery.gritter.js') }}" type="text/javascript"></script>
+        <!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
+        <script src="{{ asset('assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/plugins/jquery.sparkline.min.js') }}" type="text/javascript"></script>
+        <!-- Tablas -->
+        <script src="{{ asset('assets/plugins/data-tables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="{{ asset('assets/scripts/core/app.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/scripts/custom/index.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/scripts/custom/tasks.js') }}" type="text/javascript"></script>   
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <script src="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>   
+
+
+
+        <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap2-typeahead.min.js') }}" type="text/javascript"></script>   
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}" type="text/javascript"></script> 
+
+        <script src="{{ asset('assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}" type="text/javascript"></script> 
+        <script src="{{ asset('assets/plugins/clockface/js/clockface.js') }}" type="text/javascript"></script> 
+        <script src="{{ asset('assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script> 
+
+
+        <script src="{{ asset('assets/scripts/custom/components-pickers.js') }}" type="text/javascript"></script>           
+        <script>
+            jQuery(document).ready(function() {
+                App.init(); // initlayout and core plugins
+                ComponentsPickers.init();
+                Index.init();
+                Index.initJQVMAP(); // init index page's custom scripts
+                Index.initCalendar(); // init index page's custom scripts
+                Index.initCharts(); // init index page's custom scripts
+                Index.initChat();
+                Index.initMiniCharts();
+                Index.initDashboardDaterange();
+                Index.initIntro();
+                Tasks.initDashboardWidget();
+                FormWizard.init();
+            });
+
+            $(document.getElementById("listar")).dataTable({//script para el tabular, buscar y filtar las tablas con id "listar"
+                "oLanguage": {
+                    "sEmptyTable": "No hay resultados.", "oPaginate": {
+                        "sPrevious": "Anterior",
+                        "sNext": "Siguiente",
+                        "sFirst": "Inicio", "sLast": "Final"
+                    }, "sZeroRecords": "Sin coincidencias.",
+                    "sSearch": "Buscar:",
+                    "sLengthMenu": "Mostrar _MENU_ entradas",
+                    "sInfoFiltered": " - filtrando de _MAX_ entradas",
+                    "sInfoEmpty": "No existen entradas para mostrar.",
+                    "sInfo": "Mostrando desde _START_ hasta _END_ de un total de _TOTAL_ entradas"
+                }, "sPaginationType": "full_numbers"
+
+            });
+        </script>
+    {% endblock %}
+</body>
+</html>

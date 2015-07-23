@@ -1,0 +1,115 @@
+{% extends '::base.html.twig' %}
+
+    {% block body -%}
+        <div id="content-header" class="col-sm-12">
+            <div class="row">
+                
+                <div class="col-xs-12 col-sm-9">
+                    <h3>Material</h3>
+                </div>
+        
+                <div class="col-xs-12 col-sm-3">
+                    <div id="content-actions">
+                        <a href="{{ path('material_new') }}" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-file"></span> Adicionar Material
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Problemas con Firefox 
+        <div class="table-responsive">
+        -->
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>UM</th>
+                        <th>Fabricante</th>
+                        <th>Descripcion</th>
+                        <th>Precio 10%</th>
+                        <th>Inventario</th>
+                        <th>Compra</th>
+                        <th>Contrato</th>
+                        <th>Oferta</th>
+                        <th>Disponible</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        {% if entity.codigo is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.codigo }}</td>
+                        {% endif %}
+                        {% if entity.unidadmedida is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.unidadmedida }}</td>
+                        {% endif %}
+                        {% if entity.fabricante is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.fabricante }}</td>
+                        {% endif %}
+                        {% if entity.descripcion is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.descripcion }}</td>
+                        {% endif %}
+                        {% if entity.precio10porciento is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% elseif entity.precio10porciento%}
+                            <td><span class="label label-success">SI</span></td>
+                        {% else %}
+                            <td><span class="label label-danger">NO</span></td>
+                        {% endif %}
+                        {% if entity.cantidadinventario is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.cantidadinventario }}</td>
+                        {% endif %}
+                        {% if entity.cantidadcompra is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.cantidadcompra }}</td>
+                        {% endif %}
+                        {% if entity.cantidadcontrato is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.cantidadcontrato }}</td>
+                        {% endif %}
+                        {% if entity.cantidadoferta is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.cantidadoferta }}</td>
+                        {% endif %}
+                        {% if entity.cantidaddisponible is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.cantidaddisponible }}</td>
+                        {% endif %}                
+                            <td>                         
+                            
+                                <a href="{{ path('material_show', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-eye-open"></span> Ver</a>
+                        
+                                                                            
+                                <a href="{{ path('material_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span> Modificar</a>
+                        
+                            </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        <!-- Problemas con Firefox
+        </div>
+        -->
+        
+    {% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base2.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/css/wizard-steps.css')}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+    {{ include('OfertaWizard/wizardSteps.html.twig', {'active': 5}) }}
+
+    <h3>Materiales</h3>    
+
+    <form action="{{ path('oferta_materiales', { 'id': entity.id }) }}" method="post" role="form">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Material</th>
+                        <th rowspan="2">UM</th>
+                        <th colspan="2">Precio</th>
+                        {% for sitio in entity.sitios %}
+                            <th rowspan="2">{{ sitio.nombre }}</th>    
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <th>CUP</th>
+                        <th>CUC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categoria in ofertaCategMat %}  
+                        <tr>
+                            {% set counter = 0 %}
+                            {% for material in categoria.materiales %}
+                                {% set counter = counter + 1 %}
+                                {% for precio in material.precios %}
+                                    {% set counter = counter + 1 %}
+                                {% endfor %}
+                                {% for sitio in entity.sitios %}
+                                    {% set counter = counter + 1 %}  
+                                {% endfor %}  
+                            {% endfor %}  
+                            
+                            <td  colspan="{{ 1 + counter }}" style="text-align: center"><strong>{{ categoria.nombre }}</strong></td>
+                        </tr>
+                        
+                        {% for material in categoria.materiales %}
+                            <tr class="{{ cycle(['odd', 'even'], loop.index)}}">
+                                <td>{{ material.descripcion }}</td>
+                                <td>{{ material.getUnidadMedida }}</td>
+                                {% for precio in material.precios %}
+                                    <td>{{ precio.valor }}</td>
+                                {% endfor %}
+                                {% for sitio in entity.sitios %}
+                                    <td><input type="number" value="{{ grid[sitio.id][material.id] is defined ? grid[sitio.id][material.id] : 0}}" maxlength="50" class="form-control" name="{{ sitio.id ~ '-' ~ material.id }}"></td>   
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ path('oferta_categorias', { 'id': entity.id }) }}" class="btn btn-primary" role="button">
+            <span class="glyphicon glyphicon-chevron-left"></span> Anterior
+        </a>
+        <button type="submit" class="btn btn-primary" name="add4_aceptar" value="siguiente">
+            Siguiente <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+        <a href="{{ path('oferta') }}" class="btn btn-info" role="button">
+            <span class="glyphicon glyphicon-list"></span> Listado
+        </a>
+    </form>
+
+{% endblock %}

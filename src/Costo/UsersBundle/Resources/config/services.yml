@@ -1,0 +1,29 @@
+parameters:
+  ldap_username: esneil
+  ldap_password: 0wifiWimax0
+  ldap_base_dn: [DC=cubatel,DC=cu]
+  ldap_account_suffix: cubatel.cu
+  ldap_domain_controller: dc.cubatel.cu
+  ldap_service.class: Costo\UsersBundle\Security\LDAPService
+  ldap_user_provider.class: Costo\UsersBundle\Security\LDAPUserProvider
+  ldap_authenticator.class: Costo\UsersBundle\Security\LDAPAuthenticator
+
+
+services:
+  ldap_service:
+    class: "%ldap_service.class%"
+    arguments: ["%ldap_username%","%ldap_password%","%ldap_base_dn%","%ldap_account_suffix%","%ldap_domain_controller%"]
+  ldap_user_provider:
+    class: "%ldap_user_provider.class%"
+    arguments: ["@ldap_service"]
+  ldap_authenticator:
+    class: "%ldap_authenticator.class%"
+    arguments: ["@security.encoder_factory","@ldap_service","@doctrine.orm.entity_manager"]
+    
+    
+#Formulario de gestion de usuario como servicio    
+  costo.form.type.usuario:
+    class: Costo\UsersBundle\Form\UserType
+    arguments: ["@security.context", "@request_stack", "@doctrine.orm.entity_manager"]
+    tags:
+       - { name: form.type, alias: costo_usersbundle_user }

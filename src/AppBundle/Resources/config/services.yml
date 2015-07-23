@@ -1,0 +1,16 @@
+services:
+    form.type.dieta:
+        class: AppBundle\Form\DietaType
+        arguments: ["@ldap_service", "@doctrine.orm.entity_manager"]
+        tags:
+           - { name: form.type, alias: appbundle_dieta }
+    form.type.dieta_search:
+        class: AppBundle\Form\DietaSearchType
+        arguments: ["@ldap_service"]
+        tags:
+           - { name: form.type, alias: appbundle_dieta_search }
+    constraint.validator.beneficiario:
+        class: AppBundle\Validator\Constraints\BeneficiarioValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - {name: validator.constraint_validator, alias: beneficiario_no_pendiente}

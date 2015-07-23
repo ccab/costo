@@ -1,0 +1,46 @@
+<div class="stepwizard">
+    <div class="stepwizard-row setup-panel">
+        <div class="stepwizard-step">
+            <a href={{ path('oferta_cliente', { 'id': entity.id }) }} type="button" class="btn {{ active == 1 ? 'btn-success' : 'btn-default' }} btn-circle">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <p>Cliente</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('oferta_procesos', { 'id': entity.id }) }} type="button" class="btn {{ active == 2 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-tasks"></i>
+            </a>
+            <p>Procesos</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('oferta_categorias', { 'id': entity.id }) }} type="button" class="btn {{ active == 3 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-tags"></i>
+            </a>
+            <p>Categorias</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('oferta_sitios', { 'id': entity.id }) }} type="button" class="btn {{ active == 4 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-home"></i>
+            </a>
+            <p>Sitios</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('oferta_materiales', { 'id': entity.id }) }} type="button" class="btn {{ active == 5 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-shopping-cart"></i>
+            </a>
+            <p>Materiales</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('oferta_servicios', { 'id': entity.id }) }} type="button" class="btn {{ active == 6 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-wrench"></i>
+            </a>
+            <p>Servicios</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('oferta_resumen', { 'id': entity.id }) }} type="button" class="btn {{ active == 7 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-ok"></i>
+            </a>
+            <p>Resumen</p>
+        </div>
+    </div>
+</div>

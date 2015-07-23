@@ -1,0 +1,116 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h3>Contacto</h3>
+    
+    <div class="form-horizontal">    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Nombre</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.nombre is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.nombre }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Ci</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.ci is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.ci }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Telefono</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.telefono is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.telefono }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.email is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.email }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Nacionalidad</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.nacionalidad is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.nacionalidad }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Pasaporte</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.pasaporte is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.pasaporte }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Web</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.web is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.web }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Area</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.area is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.area }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+    </div>
+    
+                    
+                <a href="{{ path('contacto_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-edit"></span> Modificar</a>
+
+                        
+                <a href="{{ path('contacto_delete', { 'id': entity.id }) }}" class="btn btn-danger" role="button">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+
+                        
+                <a href="{{ path('contacto') }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-list"></span> Listado</a>
+{% endblock %}

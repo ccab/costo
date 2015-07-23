@@ -1,0 +1,30 @@
+tipoempresa:
+    pattern:  /
+    defaults: { _controller: "ClienteBundle:TipoEmpresa:index" }
+
+tipoempresa_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClienteBundle:TipoEmpresa:show" }
+
+tipoempresa_new:
+    pattern:  /new
+    defaults: { _controller: "ClienteBundle:TipoEmpresa:new" }
+
+tipoempresa_create:
+    pattern:  /create
+    defaults: { _controller: "ClienteBundle:TipoEmpresa:create" }
+    requirements: { _method: post }
+
+tipoempresa_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClienteBundle:TipoEmpresa:edit" }
+
+tipoempresa_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClienteBundle:TipoEmpresa:update" }
+    requirements: { _method: post|put }
+
+tipoempresa_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClienteBundle:TipoEmpresa:delete" }
+    requirements: { _method: post|delete }

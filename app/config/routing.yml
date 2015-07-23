@@ -1,0 +1,42 @@
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
+costo_oferta:
+    resource: "@CostoOfertaBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
+#cliente:
+#    resource: "@ClienteBundle//Controller/"
+#    type:     annotation
+#    prefix:   /admin/
+
+materiales:
+    resource: "@MaterialesBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
+costo_servicio:
+    resource: "@CostoServicioBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
+#Authentication settings
+login:
+  path: /usuarios/login
+  defaults: { _controller: CostoUsersBundle:Default:loginPage }
+login_check:
+    path: /login_check
+logout:
+    path: /logout
+
+costo_users:
+    resource: "@CostoUsersBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+

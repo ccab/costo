@@ -1,0 +1,10 @@
+{# https://github.com/symfony/symfony/issues/11819 #}
+{% extends "bootstrap_3_horizontal_layout.html.twig" %}
+
+{% block _oferta_form_sitios_entry_label %}
+    {%- if label != '__name__label__' -%}
+        {%- set label = 'Sitio # ' ~ (name + 1) -%}
+    {%- endif -%}
+
+    {{- form_label(form, label) -}}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% block extends %}
+{{ "{% extends 'base2.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block body -%}" }}
+    <div class="form-horizontal">
+    {%- for field, metadata in fields if field != 'id' %}
+    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{'{{ "'~field~'"|humanize }}'}}</label>
+
+        {%- if metadata.type in ['date', 'datetime'] %}
+
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ '{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}' }}
+                </div>
+            </div>
+        {%- elseif metadata.type == 'boolean' %}
+        
+            <div class="col-sm-10">
+                <div class="form-control boolean">
+            {{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' is null %}' }}
+                    <span class="label label-default">NULL</span>
+            {{ '{% elseif entity.' ~ field|replace({'_': ''}) ~ '%}' }}
+                    <span class="label label-success">SI</span>
+            {{ '{% else %}' }}
+                    <span class="label label-danger">NO</span>
+            {{ '{% endif %}' }}
+                </div>
+            </div>        
+                
+        {%- elseif metadata.type is iterable %}
+                            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ '{% for element in entity.' ~ field|replace({'_': ''}) ~ ' %}' }}
+                        <span class="label label-primary">{{ '{{ element }}' }}</span>
+                    {{ '{% endfor %}' }}
+                </div>
+            </div>
+                        
+        {%- else %}
+            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' is null %}' }}
+                        <span class="label label-default">NULL</span>
+                    {{ '{% else %}' }}
+                        {{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}
+                    {{ '{% endif %}' }}
+                </div>
+            </div>
+
+        {%- endif %}
+              
+        </div>
+        
+    {%- endfor %}
+    
+    </div>
+    
+    {% set hide_edit, hide_delete = false, false %}
+    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+{{ "{% endblock %}" }}
+{% endblock body %}

@@ -1,0 +1,87 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Fichas de Cliente{% endblock %}
+
+{% block page_title %}Fichas de Cliente{% endblock %}
+
+{% block body -%}
+    <div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-users"></i>Fichas de Cliente
+        </div>
+        <!-- <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="#portlet-config" data-toggle="modal" class="config">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div> -->
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>REEUP</th>
+                    <th>Elaborado Por</th>
+                    <th>Fecha Elaboracion</th>
+                    <th>Ministerio</th>
+                    <th>Tipo de Empresa</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    {% if entity.nombre is null %}
+                        <td><span class="label label-default">NULL</span></td>
+                    {% else %}
+                        <td>{{ entity.nombre }}</td>
+                    {% endif %}
+                    {% if entity.reeup is null %}
+                        <td><span class="label label-default">NULL</span></td>
+                    {% else %}
+                        <td>{{ entity.reeup }}</td>
+                    {% endif %}
+                    {% if entity.nombreElabora is null %}
+                        <td><span class="label label-default">NULL</span></td>
+                    {% else %}
+                        <td>{{ entity.nombreElabora }}</td>
+                    {% endif %}
+                    {% if entity.fechaElaboracion is null %}
+                        <td><span class="label label-default">NULL</span></td>
+                    {% else %}
+                        <td>{{ entity.fechaElaboracion|date('d/m/Y') }}</td>
+                    {% endif %} 
+                    {% if entity.ministerio is null %}
+                        <td><span class="label label-default">NULL</span></td>
+                    {% else %}
+                        <td>{{ entity.ministerio }}</td>
+                    {% endif %} 
+                    {% if entity.tipoempresa is null %}
+                        <td><span class="label label-default">NULL</span></td>
+                    {% else %}
+                        <td>{{ entity.tipoempresa }}</td>
+                    {% endif %} 
+                        <td>                         
+
+                            <a href="{{ path('ficha_show', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-eye-open"></span> Ver</a>
+
+
+                            <a href="{#{ path('ficha_entidad', { 'id': entity.id }) }#}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span> Modificar</a>
+
+                        </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        </div>
+    </div>
+{% endblock %}

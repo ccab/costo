@@ -1,0 +1,40 @@
+<div class="stepwizard">
+    <div class="stepwizard-row setup-panel">
+        <div class="stepwizard-step">
+            <a href={{ path('ficha_entidad', { 'id': entity.id }) }} type="button" class="btn {{ active == 1 ? 'btn-success' : 'btn-default' }} btn-circle">
+                <i class="glyphicon glyphicon-home"></i>
+            </a>
+            <p>Entidad</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('ficha_cuentas', { 'id': entity.id }) }} type="button" class="btn {{ active == 2 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-credit-card"></i>
+            </a>
+            <p>Cuentas</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('ficha_contactos', { 'id': entity.id }) }} type="button" class="btn {{ active == 3 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <p>Contactos</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('ficha_autorizados', { 'id': entity.id }) }} type="button" class="btn {{ active == 4 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-pencil"></i>
+            </a>
+            <p>Autorizados</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('ficha_directivos', { 'id': entity.id }) }} type="button" class="btn {{ active == 5 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-briefcase"></i>
+            </a>
+            <p>Directivos</p>
+        </div>
+        <div class="stepwizard-step">
+            <a href={{ path('ficha_elaboracion', { 'id': entity.id }) }} type="button" class="btn {{ active == 6 ? 'btn-success' : 'btn-default' }} btn-circle" >
+                <i class="glyphicon glyphicon-file"></i>
+            </a>
+            <p>Elaboracion</p>
+        </div>
+    </div>
+</div>

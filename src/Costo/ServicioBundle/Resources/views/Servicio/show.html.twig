@@ -1,0 +1,236 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h3>Servicio</h3>
+    
+    <div class="form-horizontal">    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Nombre</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.nombre is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.nombre }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Codigo</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.codigo is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.codigo }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Unidad</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.unidad is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.unidad }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Salario</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.salario is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.salario }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Precio_unit_cuc</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.preciounitcuc is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.preciounitcuc }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Precio_unit_cup</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.preciounitcup is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.preciounitcup }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Deprec_cuc</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.depreccuc is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.depreccuc }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Deprec_cup</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.depreccup is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.depreccup }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Alojamiento_cuc</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.alojamientocuc is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.alojamientocuc }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Alojamiento_cup</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.alojamientocup is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.alojamientocup }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Dieta_cuc</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.dietacuc is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.dietacuc }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Dieta_cup</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.dietacup is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.dietacup }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Mat_prim_cuc</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.matprimcuc is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.matprimcuc }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Mat_prim_cup</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.matprimcup is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.matprimcup }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Portadores_cuc</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.portadorescuc is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.portadorescuc }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Portadores_cup</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.portadorescup is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.portadorescup }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Arrend_cuc</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.arrendcuc is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.arrendcuc }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Arrend_cup</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.arrendcup is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.arrendcup }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+    </div>
+    
+                    
+                <a href="{{ path('servicio_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-edit"></span> Modificar</a>
+
+                        
+                <a href="{{ path('servicio_delete', { 'id': entity.id }) }}" class="btn btn-danger" role="button">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+
+                        
+                <a href="{{ path('servicio') }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-list"></span> Listado</a>
+{% endblock %}

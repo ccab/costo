@@ -1,0 +1,146 @@
+{% extends 'base2.html.twig' %}
+
+{% block body -%}
+    <div class="form-horizontal">    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "numero"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.numero is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.numero }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "numeroReembolso"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.numeroReembolso is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.numeroReembolso }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "diasEstimado"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.diasEstimado is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.diasEstimado }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "diasReal"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.diasReal is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.diasReal }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "fechaPago"|humanize }}</label>
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ entity.fechaPago|date('Y-m-d H:i:s') }}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "fechaSalida"|humanize }}</label>
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ entity.fechaSalida|date('Y-m-d H:i:s') }}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "fechaRegresoReal"|humanize }}</label>
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ entity.fechaRegresoReal|date('Y-m-d H:i:s') }}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "fechaLiquidado"|humanize }}</label>
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ entity.fechaLiquidado|date('Y-m-d H:i:s') }}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "importeAnticipo"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.importeAnticipo is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.importeAnticipo }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "importeEntregado"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.importeEntregado is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.importeEntregado }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "importeDevuelto"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.importeDevuelto is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.importeDevuelto }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "observaciones"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.observaciones is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.observaciones }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+    </div>
+    
+                    
+                <a href="{{ path('dieta_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-edit"></span> Modificar</a>
+
+                        
+                <a href="{{ path('dieta_delete', { 'id': entity.id }) }}" class="btn btn-danger" role="button">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+
+                        
+                <a href="{{ path('dieta') }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-list"></span> Listado</a>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'base2.html.twig' %}
+
+{% form_theme form 'OfertaWizard/sitios_theme.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/css/wizard-steps.css')}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+    {{ include('OfertaWizard/wizardSteps.html.twig', {'active': 4}) }}
+
+    <h3>Sitios</h3>
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <a href="{{ path('oferta_cliente', { 'id': entity.id }) }}" class="btn btn-primary" role="button">
+                <span class="glyphicon glyphicon-chevron-left"></span> Anterior
+            </a>
+            <button type="submit" class="btn btn-primary">
+                Siguiente <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+            <a href="{{ path('oferta') }}" class="btn btn-info" role="button">
+                <span class="glyphicon glyphicon-list"></span> Listado
+            </a>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        var $collectionHolder;
+        // setup an "add" link
+        var $addLink = $('<a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus-sign"></span> Agregar Sitio</a>');
+        var $addLinkDiv = $('<div class="add-link"></div>').append($addLink);
+
+        jQuery(document).ready(function() {
+            // Get the div that holds the collection of cuentas
+            $collectionHolder = $('div#oferta_form_sitios');
+
+            // add the "add" div
+            $collectionHolder.append($addLinkDiv);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+                // add a new form (see next code block)
+                addForm($collectionHolder, $addLinkDiv);
+            });
+
+            function addForm($collectionHolder, $addLinkDiv) {
+                // Get the data-prototype
+                var prototype = $collectionHolder.data('prototype');
+
+                // get the new index
+                var index = $collectionHolder.data('index');
+
+                // Get the child forms number 
+                $collectionHolder.data('num', $collectionHolder.find("div[id*='oferta_form_sitios_']").length);
+                var num = $collectionHolder.data('num') + 1;
+
+                // Set a proper label
+                var newForm = prototype.replace(/__name__label__/g, "Sitio # " + num);
+
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm2 = newForm.replace(/__name__/g, index);
+
+                // increase the index with one for the next item
+                $collectionHolder.data('index', index + 1);
+
+                // Display the form, before the "Add" link div
+                var $newFormDiv = $('<div class="new-form"></div>').append(newForm2);
+                $addLinkDiv.before($newFormDiv);
+
+                // add a delete link to the new form
+                addFormDeleteLink($newFormDiv);
+            }
+
+            // add a delete link to all of the existing forms
+            $collectionHolder.find("div.form-group").each(function() {
+                addFormDeleteLink($(this));
+            });
+
+            function addFormDeleteLink($FormDiv) {
+                var $removeLink = $('<a href="#" class="btn btn-danger pull-right" role="button"><span class="glyphicon glyphicon-trash"></span> Eliminar este Sitio</a>');
+                $FormDiv.find("div[id*='oferta_form_sitios_']").append($removeLink);
+
+                $removeLink.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+                    // remove the li for the tag form
+                    $FormDiv.remove();
+                });
+            }
+
+        });
+
+    </script>
+
+
+{% endblock %}

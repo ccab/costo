@@ -1,0 +1,144 @@
+{% extends 'base2.html.twig' %}
+
+{% block body -%}
+    <h3>Ficha</h3>
+    
+    <div class="form-horizontal">    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Nombre</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.nombre is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.nombre }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Direccion</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.direccion is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.direccion }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">REEUP</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.reeup is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.reeup }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">NIT</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.nit is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.nit }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Registro Comercial</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.regComercial is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.regComercial }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Registro Mercantil</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.regMercantil is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.regMercantil }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Licdivisas</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.licDivisas is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.licDivisas }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Nombreelabora</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.nombreElabora is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.nombreElabora }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Fechaelaboracion</label>
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ entity.fechaElaboracion|date('Y-m-d H:i:s') }}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Cargo</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.cargo is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.cargo }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Fechacreacion</label>
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {{ entity.fechaCreacion|date('Y-m-d H:i:s') }}
+                </div>
+            </div>              
+        </div>    
+    </div>
+    
+                    
+                <a href="{#{ path('ficha_entidad', { 'id': entity.id }) }#}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-edit"></span> Modificar</a>
+
+                        
+                <a href="{#{ path('ficha_delete', { 'id': entity.id }) }#}" class="btn btn-danger" role="button">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+
+                        
+                <a href="{{ path('ficha') }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-list"></span> Listado</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+autorizado:
+    pattern:  /
+    defaults: { _controller: "ClienteBundle:Autorizado:index" }
+
+autorizado_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClienteBundle:Autorizado:show" }
+
+autorizado_new:
+    pattern:  /new
+    defaults: { _controller: "ClienteBundle:Autorizado:new" }
+
+autorizado_create:
+    pattern:  /create
+    defaults: { _controller: "ClienteBundle:Autorizado:create" }
+    requirements: { _method: post }
+
+autorizado_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClienteBundle:Autorizado:edit" }
+
+autorizado_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClienteBundle:Autorizado:update" }
+    requirements: { _method: post|put }
+
+autorizado_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClienteBundle:Autorizado:delete" }
+    requirements: { _method: post|delete }

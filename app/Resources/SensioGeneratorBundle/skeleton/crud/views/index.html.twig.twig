@@ -1,0 +1,97 @@
+{% block extends %}
+{{ "{% extends 'base2.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+    {{ "{% block body -%}" }}
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>Anticipo para Dietas
+            </div>
+            <!-- <div class="tools">
+                <a href="javascript:;" class="collapse">
+                </a>
+                <a href="#portlet-config" data-toggle="modal" class="config">
+                </a>
+                <a href="javascript:;" class="reload">
+                </a>
+                <a href="javascript:;" class="remove">
+                </a>
+            </div> -->
+        </div>
+        <div class="portlet-body">
+            <div class="table-scrollable">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                        {%- for field, metadata in fields if field != 'id' %}
+
+                            <th>{{ field|capitalize }}</th>
+
+                        {%- endfor %}
+
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{ '{% for entity in entities %}' }}
+                        <tr>
+
+                    {%- for field, metadata in fields %}
+                        {%- if metadata.type in ['date', 'datetime'] %}
+
+                            {{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' is null %}' }}
+                                <td><span class="label label-default">NULL</span></td>
+                            {{ '{% else %}' }}
+                                <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
+                            {{ '{% endif %}' }}
+
+                        {%- elseif metadata.type == 'boolean' %}
+
+                            {{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' is null %}' }}
+                                <td><span class="label label-default">NULL</span></td>
+                            {{ '{% elseif entity.' ~ field|replace({'_': ''}) ~ '%}' }}
+                                <td><span class="label label-success">SI</span></td>
+                            {{ '{% else %}' }}
+                                <td><span class="label label-danger">NO</span></td>
+                            {{ '{% endif %}' }}
+
+                        {%- elseif metadata.type is iterable %}
+
+                            <td>
+                                {{ '{% for element in entity.' ~ field|replace({'_': ''}) ~ ' %}' }}
+                                    <span class="label label-primary">{{ '{{ element }}' }}</span>
+                                {{ '{% endfor %}' }}
+                            </td> 
+
+                        {%- elseif field != 'id' %}
+
+                            {{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' is null %}' }}
+                                <td><span class="label label-default">NULL</span></td>
+                            {{ '{% else %}' }}
+                                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+                            {{ '{% endif %}' }}
+
+
+                        {%- endif %}
+
+                        {%- if loop.last %}
+
+                            {%- include "crud/views/others/actions.html.twig.twig" %}
+
+                        {%- endif %}
+                    {%- endfor %}
+
+                        </tr>
+                    {{ '{% endfor %}' }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END SAMPLE TABLE PORTLET-->
+
+    {{ "{% endblock %}" }}
+{% endblock body %}

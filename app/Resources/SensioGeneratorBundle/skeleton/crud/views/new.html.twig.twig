@@ -1,0 +1,26 @@
+{% block extends %}
+{{ "{% extends 'base2.html.twig' %}" }}
+{% endblock extends %}
+
+{% block theme %}
+{{ "{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}" }}
+{% endblock theme %}
+
+{% block body %}
+{{ "{% block body -%}" }}
+    {{ '{{ form_start(form) }}' }}
+    
+        {{ '{{ form_widget(form) }}' }}
+        
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <input type="submit" class="btn btn-primary btn" value="Aceptar">
+                {% set hide_edit, hide_delete = true, true %}
+                {% include 'crud/views/others/record_actions.html.twig.twig' %}
+            </div>
+        </div>
+        
+    {{ '{{ form_end(form) }}' }}
+{{ "{% endblock %}" }}
+{% endblock body %}

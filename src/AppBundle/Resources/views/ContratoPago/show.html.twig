@@ -1,0 +1,102 @@
+{% extends 'base2.html.twig' %}
+
+{% block body -%}
+    <div class="form-horizontal">    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "nombre"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.nombre is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.nombre }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "impEntregadoDesayunoCUP"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string" id="contrato-pago-imp-ent-des-cup">
+                    {% if entity.impEntregadoDesayunoCUP is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.impEntregadoDesayunoCUP }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "impEntregadoDesayunoCUC"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string" id="contrato-pago-imp-ent-des-cuc">
+                    {% if entity.impEntregadoDesayunoCUC is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.impEntregadoDesayunoCUC }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "impEntregadoAlmuerzoCUP"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string" id="contrato-pago-imp-ent-alm-cup">
+                    {% if entity.impEntregadoAlmuerzoCUP is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.impEntregadoAlmuerzoCUP }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "impEntregadoAlmuerzoCUC"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string" id="contrato-pago-imp-ent-alm-cuc">
+                    {% if entity.impEntregadoAlmuerzoCUC is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.impEntregadoAlmuerzoCUC }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "impEntregadoComidaCUP"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string" id="contrato-pago-imp-ent-com-cup">
+                    {% if entity.impEntregadoComidaCUP is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.impEntregadoComidaCUP }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "impEntregadoComidaCUC"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string" id="contrato-pago-imp-ent-com-cuc">
+                    {% if entity.impEntregadoComidaCUC is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.impEntregadoComidaCUC }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+    </div>
+    
+                    
+                <a href="{{ path('contratopago_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-edit"></span> Modificar</a>
+
+                        
+                <a href="{{ path('contratopago_delete', { 'id': entity.id }) }}" class="btn btn-danger" role="button">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+
+                        
+                <a href="{{ path('contratopago') }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-list"></span> Listado</a>
+{% endblock %}

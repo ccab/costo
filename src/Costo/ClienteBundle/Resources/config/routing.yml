@@ -1,0 +1,37 @@
+ClienteBundle_ficha:
+    resource: "@ClienteBundle/Resources/config/routing/ficha.yml"
+    prefix:   /
+    
+ClienteBundle_tipoempresa:
+    resource: "@ClienteBundle/Resources/config/routing/tipoempresa.yml"
+    prefix:   /tipoempresa
+    
+ClienteBundle_ministerio:
+    resource: "@ClienteBundle/Resources/config/routing/ministerio.yml"
+    prefix:   /ministerio
+   
+ClienteBundle_autorizado:
+    resource: "@ClienteBundle/Resources/config/routing/autorizado.yml"
+    prefix:   /autorizado
+    
+ClienteBundle_cuenta:
+    resource: "@ClienteBundle/Resources/config/routing/cuenta.yml"
+    prefix:   /cuenta
+    
+    
+#Los crud ke faltan
+ClienteBundle_contacto:
+    resource: "@ClienteBundle/Resources/config/routing/contacto.yml"
+    prefix:   /contacto
+    
+ClienteBundle_directivo:
+    resource: "@ClienteBundle/Resources/config/routing/directivo.yml"
+    prefix:   /directivo  
+    
+ClienteBundle_documento:
+    resource: "@ClienteBundle/Resources/config/routing/documento.yml"
+    prefix:   /documento
+    
+ClienteBundle_tipocuenta:
+    resource: "@ClienteBundle/Resources/config/routing/tipocuenta.yml"
+    prefix:   /tipocuenta

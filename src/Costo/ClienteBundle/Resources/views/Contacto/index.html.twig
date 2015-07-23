@@ -1,0 +1,107 @@
+{% extends '::base.html.twig' %}
+
+    {% block body -%}
+        <div id="content-header" class="col-sm-12">
+            <div class="row">
+                
+                <div class="col-xs-12 col-sm-9">
+                    <h3>Contacto</h3>
+                </div>
+        
+                <div class="col-xs-12 col-sm-3">
+                    <div id="content-actions">
+                        <a href="{{ path('contacto_new') }}" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-file"></span> Adicionar Contacto
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Problemas con Firefox 
+        <div class="table-responsive">
+        -->
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Ficha</th>
+                        <th>Nombre</th>
+                        <th>Ci</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Nacionalidad</th>
+                        <th>Pasaporte</th>
+                        <th>Web</th>
+                        <th>Area</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        {% if entity.ficha is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.ficha.nombre }}</td>
+                        {% endif %}
+                        {% if entity.nombre is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.nombre }}</td>
+                        {% endif %}
+                        {% if entity.ci is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.ci }}</td>
+                        {% endif %}
+                        {% if entity.telefono is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.telefono }}</td>
+                        {% endif %}
+                        {% if entity.email is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.email }}</td>
+                        {% endif %}
+                        {% if entity.nacionalidad is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.nacionalidad }}</td>
+                        {% endif %}
+                        {% if entity.pasaporte is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.pasaporte }}</td>
+                        {% endif %}
+                        {% if entity.web is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.web }}</td>
+                        {% endif %}
+                        {% if entity.area is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.area }}</td>
+                        {% endif %}                
+                            <td>                         
+                            
+                                <a href="{{ path('contacto_show', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-eye-open"></span> Ver</a>
+                        
+                                                                            
+                                <a href="{{ path('contacto_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span> Modificar</a>
+                        
+                            </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        <!-- Problemas con Firefox
+        </div>
+        -->
+        
+    {% endblock %}

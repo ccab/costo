@@ -1,0 +1,19 @@
+                
+                            <td>
+    
+                    {%- for action in record_actions %}
+                        {% if action == 'show' %} 
+                            
+                                <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity.id }) }}" }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-eye-open"></span> Ver</a>
+                        
+                        {% elseif action == 'edit' %}
+                            
+                                <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity.id }) }}" }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span> Modificar</a>
+                        
+                        {% else %}
+                            
+                                <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity.id }) }}" }}"><span class="glyphicon glyphicon-eye-open"></span>{{ action }}</a>
+                        
+                        {% endif %}
+                    {%- endfor %}
+    </td>

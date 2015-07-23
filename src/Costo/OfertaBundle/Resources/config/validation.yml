@@ -1,0 +1,5 @@
+Costo\OfertaBundle\Entity\Oferta:
+    constraints:
+        - Callback: { groups: [procesos], callback: "procPrincUnico" }
+        - Callback: { groups: [procesos], callback: "procUnico" }
+

@@ -1,0 +1,54 @@
+{% extends 'base2.html.twig' %}
+
+{% block body -%}
+    <div class="form-horizontal">    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "contrato"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.contrato is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.contrato }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "proyecto"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.proyecto is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.proyecto }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{ "dias"|humanize }}</label>            
+            <div class="col-sm-10">
+                <div class="form-control string">
+                    {% if entity.dias is null %}
+                        <span class="label label-default">NULL</span>
+                    {% else %}
+                        {{ entity.dias }}
+                    {% endif %}
+                </div>
+            </div>              
+        </div>    
+    </div>
+    
+                    
+                <a href="{{ path('contratodieta_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-edit"></span> Modificar</a>
+
+                        
+                <a href="{{ path('contratodieta_delete', { 'id': entity.id }) }}" class="btn btn-danger" role="button">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+
+                        
+                <a href="{{ path('contratodieta') }}" class="btn btn-info" role="button">
+                    <span class="glyphicon glyphicon-list"></span> Listado</a>
+{% endblock %}

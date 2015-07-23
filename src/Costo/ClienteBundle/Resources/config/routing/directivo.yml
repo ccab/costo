@@ -1,0 +1,30 @@
+directivo:
+    pattern:  /
+    defaults: { _controller: "ClienteBundle:Directivo:index" }
+
+directivo_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClienteBundle:Directivo:show" }
+
+directivo_new:
+    pattern:  /new
+    defaults: { _controller: "ClienteBundle:Directivo:new" }
+
+directivo_create:
+    pattern:  /create
+    defaults: { _controller: "ClienteBundle:Directivo:create" }
+    requirements: { _method: post }
+
+directivo_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClienteBundle:Directivo:edit" }
+
+directivo_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClienteBundle:Directivo:update" }
+    requirements: { _method: post|put }
+
+directivo_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClienteBundle:Directivo:delete" }
+    requirements: { _method: post|delete }

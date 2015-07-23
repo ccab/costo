@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+    {% block body -%}
+        <div id="content-header" class="col-sm-12">
+            <div class="row">
+                
+                <div class="col-xs-12 col-sm-9">
+                    <h3>Categoria</h3>
+                </div>
+        
+                <div class="col-xs-12 col-sm-3">
+                    <div id="content-actions">
+                        <a href="{{ path('categoria_new') }}" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-file"></span> Adicionar Categoria
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Problemas con Firefox 
+        <div class="table-responsive">
+        -->
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        {% if entity.nombre is null %}
+                            <td><span class="label label-default">NULL</span></td>
+                        {% else %}
+                            <td>{{ entity.nombre }}</td>
+                        {% endif %}                
+                            <td>                         
+                            
+                                <a href="{{ path('categoria_show', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-eye-open"></span> Ver</a>
+                        
+                                                                            
+                                <a href="{{ path('categoria_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span> Modificar</a>
+                        
+                            </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        <!-- Problemas con Firefox
+        </div>
+        -->
+        
+    {% endblock %}

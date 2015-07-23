@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="" name="description"/>
+        <meta content="" name="author"/>
+
+
+        <title>{% block title %}Page Title{% endblock %}</title>
+
+        {% block stylesheets %}
+            <!-- BEGIN GLOBAL MANDATORY STYLES -->
+            <!-- <link href="{{ asset('assets/css/open-sans-font.css')}}" rel="stylesheet" type="text/css"/> -->
+            <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/uniform/css/uniform.default.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/plugins/data-tables/jquery.dataTables.css')}}" rel="stylesheet" type="text/css"/>
+            <!-- END GLOBAL MANDATORY STYLES -->
+
+            <!-- BEGIN PAGE LEVEL STYLES -->
+            {% block stylesheets_page %}
+            {% endblock %}
+            <!-- END PAGE LEVEL STYLES -->
+
+            <!-- BEGIN THEME STYLES -->
+            <link href="{{ asset('assets/css/style-metronic.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/style-responsive.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/plugins.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/pages/tasks.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('assets/css/themes/light.css')}}" rel="stylesheet" type="text/css" id="style_color"/>
+            <link href="{{ asset('assets/css/print.css')}}" rel="stylesheet" type="text/css" media="print"/>
+            <link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css"/>
+            <!-- END THEME STYLES -->
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body class="page-header-fixed">
+        <!-- BEGIN HEADER -->
+        <div class="header navbar navbar-fixed-top">
+            <!-- BEGIN TOP NAVIGATION BAR -->
+            <div class="header-inner">
+                <!-- BEGIN LOGO -->
+                <a class="navbar-brand" href="" style="color: #999">Sistema de Costo 
+                    <span class="label label-sm label-danger"> BETA </span>
+                </a> 
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <img src={{ asset('assets/img/menu-toggler.png')}} alt=""/>
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <ul class="nav navbar-nav pull-right">
+                    {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <li class="dropdown user">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
+                                <i class="fa fa-user"></i>
+                                <span class="username">
+                                    {{ app.user.firstName }}
+                                </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!--<li>
+                                        <a href="extra_profile.html">
+                                                <i class="fa fa-user"></i> My Profile
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="page_calendar.html">
+                                                <i class="fa fa-calendar"></i> My Calendar
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="inbox.html">
+                                                <i class="fa fa-envelope"></i> My Inbox
+                                                <span class="badge badge-danger">
+                                                         3
+                                                </span>
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#">
+                                                <i class="fa fa-tasks"></i> My Tasks
+                                                <span class="badge badge-success">
+                                                         7
+                                                </span>
+                                        </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                        <a href="javascript:;" id="trigger_fullscreen">
+                                                <i class="fa fa-arrows"></i> Full Screen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="extra_lock.html">
+                                                <i class="fa fa-lock"></i> Lock Screen
+                                        </a>
+                                </li>-->
+                                <li>
+                                    <a href="{{ path('logout') }}">
+                                        <i class="fa fa-key"></i> Salir
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    {% endif %}
+                </ul>
+                <!-- END TOP NAVIGATION MENU -->
+
+
+            </div>
+            <!-- END TOP NAVIGATION BAR -->
+        </div>
+        <!-- END HEADER -->
+
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- add "navbar-no-scroll" class to disable the scrolling of the sidebar menu -->
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="400">
+                        <li class="sidebar-toggler-wrapper">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler hidden-phone">
+                            </div>
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <li class="sidebar-search-wrapper">
+                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                            <form class="sidebar-search" action="extra_search.html" method="POST">
+                                <div class="form-container">
+                                    <div class="input-box">
+                                        <a href="javascript:;" class="remove">
+                                        </a>
+                                        <input type="text" placeholder="Buscar..."/>
+                                        <input type="button" class="submit" value=" "/>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+
+                        <!--SUBMENU DIETAS-->
+                        <li class="active">
+                            <a href="javascript:;">
+                                <i class="fa fa-credit-card"></i>
+                                <span class="title"> Dietas <!--<span class="badge badge-roundless badge-important"> nuevo </span>--></span>
+                                <span class="arrow "></span>
+                                <span class="selected"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="active"> <a href="{{path('dieta')}}"><i class="fa fa-list-ol"></i> Listado</a> </li>
+                                <li > 
+                                    <a href="javascript:;">
+                                        <i class="fa fa-plus-circle"></i> Solicitar
+                                        <span class="arrow">
+                                        </span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li>
+                                            <a href="{{path('solicitar_anticipo')}}">
+                                                <i class="fa fa-plus-circle"></i> Contra Anticipo
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path('dieta_liquidacion')}}">
+                                                <i class="fa fa-plus-circle"></i> Contra Liquidacion
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {#<li > <a href="{{path('dieta_liquidar')}}"><i class="fa fa-check-circle"></i> Liquidar Directo</a> </li>#}
+                            </ul>
+                        </li>
+                        <!--END SUBMENU DIETAS-->
+                        <!--SUBMENU OFERTA-->
+                        <li>
+                            <a href="javascript:;">
+                                <i class="fa fa-folder-open"></i>
+                                <span class="title"> Ofertas</span>
+                                <span class="arrow "> </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li > <a href="{{path('oferta')}}"><i class="fa fa-list-ol"></i> Listado</a> </li>
+                                <li > <a href="{{path('oferta_cliente')}}"><i class="fa fa-plus-circle"></i> Adicionar</a> </li>
+                            </ul>
+                        </li>
+                        <!--END SUBMENU OFERTA-->
+                        <!--SUBMENU FICHA-->
+                        <!--<li>
+                            <a href="javascript:;">
+                                <i class="fa fa-users"></i>
+                                <span class="title"> Fichas</span>
+                                <span class="arrow "> </span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li > <a href="{{path('ficha')}}"><i class="fa fa-list-ol"></i> Listado</a> </li>
+                                <li > <a href="{{path('ficha_entidad')}}"><i class="fa fa-plus-circle"></i> Adicionar</a> </li>
+                            </ul>
+                        </li>-->
+                        <!--END SUBMENU FICHA-->
+
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+            </div>
+            <!-- END SIDEBAR -->
+
+
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+
+                    <!-- BEGIN PAGE HEADER-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- BEGIN BREADCRUMBS-->
+                            <ul class="page-breadcrumb breadcrumb">
+                                <li>
+                                    <i class="fa fa-home"></i>
+                                    <a href="{{path('dieta')}}">
+                                        Inicio
+                                    </a>
+                                    <i class="fa fa-angle-right"></i>
+                                </li>
+                                <!-- <li>
+                                    <a href="#">
+                                        Page Layouts
+                                    </a>
+                                    <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Blank Page
+                                    </a>
+                                </li>-->
+                            </ul>
+                            <!-- END BREADCRUMBS-->
+
+                            <!-- BEGIN FLASH MESSAGES-->
+                            {{ include('flash_message.html.twig',{'messages':app.session.flashbag.all()}) }}
+                            <!-- END FLASH MESSAGES-->
+
+                            <!-- BEGIN PAGE TITLE-->
+                            <h3 class="page-title">
+                                {% block page_title %}Page Title{% endblock %}
+                            </h3>
+                            <!-- END PAGE TITLE-->
+                        </div>
+                    </div>
+                    <!-- END PAGE HEADER-->
+                    <!-- BEGIN PAGE CONTENT-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% block body %}Page content goes here{% endblock %}
+                        </div>
+                    </div>
+                    <!-- END PAGE CONTENT-->
+                </div>
+            </div>
+            <!-- END CONTENT -->
+
+
+
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <div class="footer">
+            <div class="footer-inner">
+                2015 &copy; Cubatel.SA
+            </div>
+            <div class="footer-tools">
+                <span class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </span>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+
+        {% block javascripts %}
+            <!-- BEGIN CORE PLUGINS -->
+            <!--[if lt IE 9]>
+               <script src="assets/plugins/respond.min.js"></script>
+               <script src="assets/plugins/excanvas.min.js"></script> 
+               <![endif]-->
+            <script src="{{ asset('assets/plugins/jquery-1.11.1.min.js') }}" type="text/javascript"></script>                                         <!-- PARA TABS -->
+            <script src="{{ asset('assets/plugins/jquery-migrate-1.2.1.min.js') }}" type="text/javascript"></script>
+            <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+            <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>                                   <!-- PARA TABS -->
+            <script src="{{ asset('assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets/plugins/jquery.cokie.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
+            <!-- END CORE PLUGINS -->
+            <!-- BEGIN CORE FOSJSROUTING BUNDLE -->
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+            <!-- END CORE FOSJSROUTING BUNDLE -->
+        {% endblock %}
+
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <!-- Tablas -->
+        <script src="{{ asset('assets/plugins/data-tables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+        {% block javascripts_page_plugins %}
+        {% endblock %}
+        <!-- END PAGE LEVEL PLUGINS -->
+
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="{{ asset('assets/scripts/core/app.js') }}" type="text/javascript"></script>
+        {% block javascripts_page_scripts %}
+        {% endblock %}
+        <!-- END PAGE LEVEL SCRIPTS -->  
+
+        {% block javascripts_custom_scripts %}
+        {% endblock %}
+
+        <script>
+            jQuery(document).ready(function() {
+                // initiate layout and plugins
+                App.init();
+            });
+        </script>
+
+    </body>
+</html>

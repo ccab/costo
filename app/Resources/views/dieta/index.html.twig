@@ -1,0 +1,202 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Anticipo para Dietas{% endblock %}
+
+{% block page_title %}Anticipo para Dietas{% endblock %}
+
+{% block stylesheets_page %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/select2/select2.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/select2/select2-metronic.css') }}"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('assets/plugins/bootstrap-datepicker/css/datepicker.css') }}"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}"/>
+{% endblock %}
+
+{% block body -%}
+
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-credit-card"></i>Anticipo para Dietas
+            </div>
+        </div>
+        <div class="portlet-body">
+
+            <div class="portlet box grey">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-filter"></i>Filtros
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="expand">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body display-hide">
+                    {{ form_start(form, {'attr':{'class':'form-inline'}}) }}
+                    {{ form_widget(form.numero, {'attr':{'placeholder':'Numero...'}}) }}
+                    {{ form_widget(form.numeroReembolso, {'attr':{'placeholder':'Numero de Reembolso...'}}) }}
+                    {{ form_widget(form.fechaPago, {'attr':{'class':'input-small date-picker','placeholder':'Fecha de Pago...'}}) }}
+                    {{ form_widget(form.fechaSalidaRango, {'attr':{'class':'daterange'}}) }}
+                    {{ form_widget(form.fechaSalida, {'attr':{'class':'input-small date-picker','placeholder':'Fecha de Salida...'}}) }}
+                    {{ form_widget(form.fechaRegresoReal, {'attr':{'class':'input-small date-picker','placeholder':'Fecha de Regreso...'}}) }}
+                    {{ form_widget(form.fechaLiquidado, {'attr':{'class':'input-small date-picker','placeholder':'Fecha de Liquidado...'}}) }}
+                    {{ form_widget(form.nombreBeneficiario, {'attr':{'class':'input-large select2-input','placeholder':'Nombre...'}}) }}
+                    {{ form_widget(form.areaBeneficiario, {'attr':{'placeholder':'Area...'}}) }}
+                    <input type="text" name="daterange" value="01/01/2015 - 01/31/2015"/>
+                    <button type="submit" class="btn green">
+                        <i class="fa fa-check"></i> Aceptar
+                    </button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+            <div class="table-scrollable">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">Acciones</th>
+                        <th rowspan="2">Estado</th>
+                        <th rowspan="2">No. Sol.</th>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">No. Reembolso</th>
+                        <th colspan="2" style="text-align: center">Dias</th>
+                        <th colspan="6" style="text-align: center">Fecha</th>
+                        <th colspan="2" style="text-align: center">Vencimiento</th>
+                        <th colspan="4" style="text-align: center">Importe de la Dieta CUP</th>
+                        <th colspan="2" style="text-align: center">Beneficiario</th>
+                        <th rowspan="2">Labor a realizar</th>
+                    </tr>
+                    <tr>
+                        <th>Estimado</th>
+                        <th>Real</th>
+                        <th>Pago</th>
+                        <th>Salida Estimada</th>
+                        <th>Regreso Estimada</th>
+                        <th>Salida Real</th>
+                        <th>Regreso Real</th>
+                        <th>Liquidada</th>
+                        <th>Estimado</th>
+                        <th>Real</th>
+                        <th>Entregado</th>
+                        <th>Utilizado</th>
+                        <th>Devuelto</th>
+                        <th>Real</th>
+                        <th>Nombre</th>
+                        <th>Area</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in entities %}
+                        {% if entity.estado == 'temporal' %}
+                            <tr class="danger">
+                        {% else %}
+                            <tr>
+                        {% endif %}
+                        <td>
+                            <a href="{{ path("duplicar_anticipo", {"id": entity.id}) }}">Duplicar</a>
+                            <a href="{{ path("imprimir_anticipo", {"id": entity.id}) }}">Imprimir</a>
+                        </td>
+                        <td>
+                            {% if entity.estado == 'Pendiente Aprobacion' or entity.estado == 'temporal' %}
+                                <span class="label label-sm label-info"> Pendiente Aprobacion </span>
+                            {% elseif entity.estado == 'Pendiente Liquidacion' %}
+                                <span class="label label-sm label-danger"> {{ entity.estado }} </span>
+                            {% elseif entity.estado == 'Reembolsar' %}
+                                <span class="label label-sm label-warning"> {{ entity.estado }} </span>
+                            {% elseif entity.estado == 'Completado' %}
+                                <span class="label label-sm label-success"> {{ entity.estado }} </span>
+                            {% endif %}
+                        </td>
+                        <td>{{ entity.numeroSolicitud }}</td>
+                        <td>
+                            {% if entity.estado == 'Liquidar' %}
+                                <a href="{{ path('dieta_liquidar', { 'id': entity.id }) }}">{{ entity.numero }}</a>
+                            {% elseif entity.estado == 'Reembolsar' %}
+                                <a href="{{ path('dieta_reembolsar', { 'id': entity.id }) }}">{{ entity.numero }}</a>
+                            {% elseif entity.estado == 'Completado' %}
+                                <a href="{{ path('dieta_edit', { 'id': entity.id }) }}">{{ entity.numero }}</a>
+                            {% endif %}
+
+                        </td>
+                        <td>{{ entity.numeroReembolso }}</td>
+                        <td>{{ entity.getDiffDiasEstimado }}</td>
+                        <td>{{ entity.getDiffDiasReal }}</td>
+                        <td>{{ entity.fechaPago is empty ? "" : entity.fechaPago|date('d/m/Y') }}</td>
+                        <td>{{ entity.fechaSalidaEstimada is empty ? "" : entity.fechaSalidaEstimada|date('d/m/Y') }}</td>
+                        <td>{{ entity.fechaRegresoEstimada is empty ? "" : entity.fechaRegresoEstimada|date('d/m/Y') }}</td>
+                        <td>{{ entity.fechaSalidaReal is empty ? "" : entity.fechaSalidaReal|date('d/m/Y') }}</td>
+                        <td>{{ entity.fechaRegresoReal is empty ? "" : entity.fechaRegresoReal|date('d/m/Y') }}</td>
+                        <td>{{ entity.fechaLiquidado is empty ? "" : entity.fechaLiquidado|date('d/m/Y') }}</td>
+                        <td>{{ entity.fechaRegresoEstimada is empty ? "" : entity.fechaRegresoEstimada|date_modify('+3 days')|date('d/m/Y') }}</td>
+                        <td>{{ entity.fechaRegresoReal is empty ? "" : entity.fechaRegresoReal|date_modify('+3 days')|date('d/m/Y') }}</td>
+                        <td>{{ entity.getCaluloImporteEntregado }}</td>
+                        <td>{#{{ entity.importeUtilizado }}#}</td>
+                        <td>{#{{ entity.importeDevuelto }}#}</td>
+                        <td>{#{ entity.importeAnticipo + entity.importeEntregado - entity.importeDevuelto }#}</td>
+                        <td>{{ entity.nombreBeneficiario }}</td>
+                        <td>{{ entity.areaBeneficiario }}</td>
+                        <td>{{ entity.laborRealizar }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+                    {% block javascripts_page_plugins %}
+                        <script src="{{ asset('assets/plugins/select2/select2.min.js') }}"
+                                type="text/javascript"></script>
+                        <script src="{{ asset('assets/plugins/select2/select2_locale_es.js') }}"
+                                type="text/javascript"></script>
+
+                        <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"
+                                type="text/javascript"></script>
+                        <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js') }}"
+                                type="text/javascript"></script>
+
+                        <script src="{{ asset('assets/plugins/bootstrap-daterangepicker/moment.min.js') }}"
+                                type="text/javascript"></script>
+                        <script src="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"
+                                type="text/javascript"></script>
+                    {% endblock %}
+
+                    {% block javascripts_page_scripts %}
+                        <script src="{{ asset('assets/scripts/custom/components-pickers.js') }}"
+                                type="text/javascript"></script>
+                    {% endblock %}
+
+
+                    {% block javascripts_custom_scripts %}
+                        <script type="text/javascript">
+                            $('.date-picker').datepicker({
+                                rtl: App.isRTL(),
+                                autoclose: true,
+                                format: 'dd/mm/yyyy',
+                                language: 'es'
+                            });
+
+                            $('.select2-input').select2({
+                                language: 'es'
+                            });
+
+                            $('.daterange').daterangepicker({
+                                format: 'YYYY-MM-DD',
+                                startDate: '2015-05-15',
+                                minDate: '2015-05-15',
+                                locale: {
+                                    applyLabel: 'Aceptar',
+                                }
+                            });
+
+                        </script>
+
+                    {% endblock %}

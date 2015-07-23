@@ -1,0 +1,30 @@
+contacto:
+    pattern:  /
+    defaults: { _controller: "ClienteBundle:Contacto:index" }
+
+contacto_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClienteBundle:Contacto:show" }
+
+contacto_new:
+    pattern:  /new
+    defaults: { _controller: "ClienteBundle:Contacto:new" }
+
+contacto_create:
+    pattern:  /create
+    defaults: { _controller: "ClienteBundle:Contacto:create" }
+    requirements: { _method: post }
+
+contacto_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClienteBundle:Contacto:edit" }
+
+contacto_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClienteBundle:Contacto:update" }
+    requirements: { _method: post|put }
+
+contacto_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClienteBundle:Contacto:delete" }
+    requirements: { _method: post|delete }

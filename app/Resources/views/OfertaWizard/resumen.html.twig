@@ -1,0 +1,45 @@
+{% extends 'base2.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/css/wizard-steps.css')}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+    {{ include('OfertaWizard/wizardSteps.html.twig', {'active': 7}) }}
+
+    <h3>Resumen</h3> 
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>CUP</th>
+                    <th>CUC</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <tr>
+                    <td>Servicios</td>
+                    <td>{{ resumen.servicios_cup }}</td>
+                    <td>{{ resumen.servicios_cuc }}</td>
+                </tr>
+                <tr>
+                    <td>Materiales</td>
+                    <td>{{ resumen.materiales_cup }}</td>
+                    <td>{{ resumen.materiales_cuc }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-xs-12 col-sm-3">
+        <div id="content-actions">
+            <a href="{{ path('oferta') }}" class="btn btn-info" role="button">
+                <span class="glyphicon glyphicon-list"></span> Listado
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

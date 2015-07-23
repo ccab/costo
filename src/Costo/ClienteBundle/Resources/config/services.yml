@@ -1,0 +1,16 @@
+services:
+    costo.form.type.ficha:
+        class: Costo\ClienteBundle\Form\FichaType
+        arguments: ["@security.context", "@request_stack", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: ficha_form }
+    costo.form.type.contacto:
+        class: Costo\ClienteBundle\Form\ContactoType
+        arguments: ["@security.context"]
+        tags:
+            - { name: form.type, alias: contacto_form }
+    costo.form.type.autorizado:
+        class: Costo\ClienteBundle\Form\AutorizadoType
+        arguments: ["@security.context"]
+        tags:
+            - { name: form.type, alias: autorizado_form }

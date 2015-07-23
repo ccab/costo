@@ -1,0 +1,18 @@
+Costo\ClienteBundle\Entity\Ficha:
+    properties:
+        nombre: 
+            - NotBlank: { groups: [entidad] }
+            - Length: { groups: [entidad], min: 7 }
+
+Costo\ClienteBundle\Entity\Contacto:
+    properties:
+        email: 
+            - Email: { groups: [contactos] }
+        web:
+            - Url: { groups: [contactos] }
+            
+Costo\ClienteBundle\Entity\Directivo:
+    properties:
+        email: 
+            - Email: { groups: [directivos] }
+

@@ -1,0 +1,30 @@
+ministerio:
+    pattern:  /
+    defaults: { _controller: "ClienteBundle:Ministerio:index" }
+
+ministerio_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClienteBundle:Ministerio:show" }
+
+ministerio_new:
+    pattern:  /new
+    defaults: { _controller: "ClienteBundle:Ministerio:new" }
+
+ministerio_create:
+    pattern:  /create
+    defaults: { _controller: "ClienteBundle:Ministerio:create" }
+    requirements: { _method: post }
+
+ministerio_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClienteBundle:Ministerio:edit" }
+
+ministerio_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClienteBundle:Ministerio:update" }
+    requirements: { _method: post|put }
+
+ministerio_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClienteBundle:Ministerio:delete" }
+    requirements: { _method: post|delete }

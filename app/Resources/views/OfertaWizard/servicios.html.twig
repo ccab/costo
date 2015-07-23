@@ -1,0 +1,71 @@
+{% extends 'base2.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/css/wizard-steps.css')}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+    {{ include('OfertaWizard/wizardSteps.html.twig', {'active': 6}) }}
+    <h3>Servicios</h3>  
+
+    <form action="{{ path('oferta_servicios', { 'id': entity.id }) }}" method="post" role="form">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Servicio</th>
+                        <th colspan="2">Precio</th>
+                            {% for sitio in entity.sitios %}
+                                <th rowspan="2">{{ sitio.nombre }}</th>    
+                            {% endfor %}
+                    </tr>
+                    <tr>
+                        <th>CUP</th>
+                        <th>CUC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categoria in ofertaCategServ %}
+                        <tr>
+                            {% set counter = 0 %}
+                            {% for servicio in categoria.servicios %}
+                                {% set counter = counter + 1 %}
+                                {% for sitio in entity.sitios %}
+                                    {% set counter = counter + 1 %}  
+                                {% endfor %}  
+                            {% endfor %}  
+                            
+                            <td  colspan="{{ 2 + counter }}" style="text-align: center"><strong>{{ categoria.nombre }}</strong></td>
+                            
+                        </tr>
+                        
+                        {% for servicio in categoria.servicios %}   
+                            <tr class="{{ cycle(['odd', 'even'], loop.index)}}">
+                                <td>{{ servicio.nombre }}</td>
+                                <td>{{ servicio.getPrecioUnitCup }}</td>
+                                <td>{{ servicio.getPrecioUnitCuc }}</td>
+                                {% for sitio in entity.sitios %}
+                                    <td><input type="number" value="{{ grid[sitio.id][servicio.id] is defined ? grid[sitio.id][servicio.id] : 0}}" maxlength="50" class="form-control" name="{{ sitio.id ~ '-' ~ servicio.id }}"></td>   
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ path('oferta_materiales', { 'id': entity.id }) }}" class="btn btn-primary" role="button">
+            <span class="glyphicon glyphicon-chevron-left"></span> Anterior
+        </a>
+        <button type="submit" class="btn btn-primary" name="add5_aceptar" value="siguiente">
+            Siguiente <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+        <a href="{{ path('oferta') }}" class="btn btn-info" role="button">
+            <span class="glyphicon glyphicon-list"></span> Listado
+        </a>
+
+    </form>
+
+
+{% endblock %}

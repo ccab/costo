@@ -1,0 +1,7 @@
+services:
+    costo.form.type.servicio:
+        class: Costo\OfertaBundle\Form\OfertaType
+        arguments: ["@security.context", "@request_stack", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: oferta_form }
+            

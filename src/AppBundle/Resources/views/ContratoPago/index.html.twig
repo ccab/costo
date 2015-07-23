@@ -1,0 +1,92 @@
+{% extends 'base2.html.twig' %}
+
+    {% block body -%}
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>Anticipo para Dietas
+            </div>
+            <!-- <div class="tools">
+                <a href="javascript:;" class="collapse">
+                </a>
+                <a href="#portlet-config" data-toggle="modal" class="config">
+                </a>
+                <a href="javascript:;" class="reload">
+                </a>
+                <a href="javascript:;" class="remove">
+                </a>
+            </div> -->
+        </div>
+        <div class="portlet-body">
+            <div class="table-scrollable">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Impentregadodesayunocup</th>
+                            <th>Impentregadodesayunocuc</th>
+                            <th>Impentregadoalmuerzocup</th>
+                            <th>Impentregadoalmuerzocuc</th>
+                            <th>Impentregadocomidacup</th>
+                            <th>Impentregadocomidacuc</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in entities %}
+                        <tr>
+                            {% if entity.nombre is null %}
+                                <td><span class="label label-default">NULL</span></td>
+                            {% else %}
+                                <td>{{ entity.nombre }}</td>
+                            {% endif %}
+                            {% if entity.impEntregadoDesayunoCUP is null %}
+                                <td><span class="label label-default">NULL</span></td>
+                            {% else %}
+                                <td>{{ entity.impEntregadoDesayunoCUP }}</td>
+                            {% endif %}
+                            {% if entity.impEntregadoDesayunoCUC is null %}
+                                <td><span class="label label-default">NULL</span></td>
+                            {% else %}
+                                <td>{{ entity.impEntregadoDesayunoCUC }}</td>
+                            {% endif %}
+                            {% if entity.impEntregadoAlmuerzoCUP is null %}
+                                <td><span class="label label-default">NULL</span></td>
+                            {% else %}
+                                <td>{{ entity.impEntregadoAlmuerzoCUP }}</td>
+                            {% endif %}
+                            {% if entity.impEntregadoAlmuerzoCUC is null %}
+                                <td><span class="label label-default">NULL</span></td>
+                            {% else %}
+                                <td>{{ entity.impEntregadoAlmuerzoCUC }}</td>
+                            {% endif %}
+                            {% if entity.impEntregadoComidaCUP is null %}
+                                <td><span class="label label-default">NULL</span></td>
+                            {% else %}
+                                <td>{{ entity.impEntregadoComidaCUP }}</td>
+                            {% endif %}
+                            {% if entity.impEntregadoComidaCUC is null %}
+                                <td><span class="label label-default">NULL</span></td>
+                            {% else %}
+                                <td>{{ entity.impEntregadoComidaCUC }}</td>
+                            {% endif %}                
+                            <td>                         
+                            
+                                <a href="{{ path('contratopago_show', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-eye-open"></span> Ver</a>
+                        
+                                                                            
+                                <a href="{{ path('contratopago_edit', { 'id': entity.id }) }}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span> Modificar</a>
+                        
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END SAMPLE TABLE PORTLET-->
+
+    {% endblock %}

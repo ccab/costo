@@ -1,0 +1,30 @@
+documento:
+    pattern:  /
+    defaults: { _controller: "ClienteBundle:Documento:index" }
+
+documento_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ClienteBundle:Documento:show" }
+
+documento_new:
+    pattern:  /new
+    defaults: { _controller: "ClienteBundle:Documento:new" }
+
+documento_create:
+    pattern:  /create
+    defaults: { _controller: "ClienteBundle:Documento:create" }
+    requirements: { _method: post }
+
+documento_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ClienteBundle:Documento:edit" }
+
+documento_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ClienteBundle:Documento:update" }
+    requirements: { _method: post|put }
+
+documento_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ClienteBundle:Documento:delete" }
+    requirements: { _method: post|delete }

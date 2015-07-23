@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+    
+{% block body %}
+    <h4>Esta seguro que desea eliminar el Usuario?</h4>
+        <a href="{{ path('costo_users_default_delete', {id: id}) }}">Eliminar</a>
+        <a href="{{ path('costo_users_default_index') }}" >Cancelar</a>
+{% endblock %}             
+
+
